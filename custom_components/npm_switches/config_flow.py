@@ -45,7 +45,7 @@ class BlueprintFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             )
             if valid:
                 return self.async_create_entry(
-                    title=user_input[CONF_USERNAME], data=user_input
+                    title=user_input[CONF_NPM_URL], data=user_input
                 )
             else:
                 self._errors["base"] = "auth"
@@ -91,10 +91,10 @@ class BlueprintFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         return False
 
     @callback
-    def _async_entry_for_username(self, username):
+    def _async_entry_for_username(self, domain):
         """Find an existing entry for a username."""
         for entry in self._async_current_entries():
-            if entry.data.get(CONF_USERNAME) == username:
+            if entry.data.get(CONF_NPM_URL) == domain:
                 return entry
         return None
 
@@ -130,5 +130,5 @@ class BlueprintOptionsFlowHandler(config_entries.OptionsFlow):
     async def _update_options(self):
         """Update config entry options."""
         return self.async_create_entry(
-            title=self.config_entry.data.get(CONF_USERNAME), data=self.options
+            title=self.config_entry.data.get(CONF_NPM_URL), data=self.options
         )
