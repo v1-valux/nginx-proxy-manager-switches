@@ -43,7 +43,7 @@ class NpmSwitchesBinarySwitch(NpmSwitchesEntity, SwitchEntity):
         self.proxy_id = str(proxy["id"])
         self._attr_icon = "mdi:steering"
         self.friendly_name = (
-            "NPM " + self.proxy["domain_names"][0].replace(".", " ").capitalize()
+            "NPM Host:" + self.proxy["domain_names"][0].replace(".", "_")
         )
         # print(self.friendly_name)
 
@@ -62,7 +62,7 @@ class NpmSwitchesBinarySwitch(NpmSwitchesEntity, SwitchEntity):
     # @property
     # def name(self):
     #     """Return the name of the switch."""
-    #     return "NPM " + self.proxy["domain_names"][0].replace(".", " ").capitalize()
+    #     return "NPM Host:" + self.proxy["domain_names"][0]
 
     @property
     def icon(self):
